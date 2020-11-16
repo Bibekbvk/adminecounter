@@ -1,5 +1,6 @@
 
 import 'package:adminecounter/booking_vehicle.dart';
+import 'package:adminecounter/movers_register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -342,10 +343,10 @@ class _e_counterState extends State<e_counter> {
                             Expanded(
                               child: InkWell(
                                 onTap: (){
-                                  /*Navigator.push(
+                                  Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => MoversList()));*/
+                                          builder: (context) => Movers()));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

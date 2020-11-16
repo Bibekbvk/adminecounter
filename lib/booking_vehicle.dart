@@ -249,7 +249,7 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
             ),
             RaisedButton(
               color: Colors.blue.shade700,
-              child: Text("Book Ticket"),
+              child: Text("Register Ticket"),
               onPressed: () {
 
                   FirebaseFirestore.instance.collection("booking").add({
