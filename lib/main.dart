@@ -1,7 +1,14 @@
+import 'package:adminecounter/booking_vehicle.dart';
+import 'package:adminecounter/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MaterialApp(
+
+      home: e_counter()));
 }
 
 class MyApp extends StatelessWidget {
