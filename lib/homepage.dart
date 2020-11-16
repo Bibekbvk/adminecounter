@@ -1,6 +1,7 @@
 
 import 'package:adminecounter/booking_vehicle.dart';
 import 'package:adminecounter/movers_register.dart';
+import 'package:adminecounter/reserve_register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -99,7 +100,7 @@ class _e_counterState extends State<e_counter> {
               child: Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  'Select Services',
+                  'Admin Panel',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -180,10 +181,10 @@ class _e_counterState extends State<e_counter> {
                                     ),
                                   ),
                                   onTap: () {
-                                    /*Navigator.push(
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => ReserveList()));*/
+                                            builder: (context) => Reserve()));
                                   }),
                             ),
                             SizedBox(
