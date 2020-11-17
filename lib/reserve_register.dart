@@ -19,11 +19,16 @@ String selectedwifi;
 String selectedtv;
 
 TextEditingController _typeController = TextEditingController();
+DateTime time = DateTime.now();
 
 
 
 class _ReserveState extends State<Reserve> {final _formKey = GlobalKey<FormState>();
+void initState() {
+  time = DateTime.now();
 
+  super.initState();
+}
 @override
 Widget build(BuildContext context) {
   return Scaffold(
@@ -153,7 +158,7 @@ Widget build(BuildContext context) {
               child: Text("Reserve Reserve"),
               onPressed: () {
 
-                FirebaseFirestore.instance.collection("Reserve").add({
+                FirebaseFirestore.instance.collection("Reserve").doc('${time.millisecond}${time.second}').set({
                   'available_in': _available_inController.text,
                   'charging/ac/wifi/tv': "${selectedcharging}/${selectedac}/$selectedwifi/$selectedtv",
                   'driver': _driverController.text,
@@ -162,6 +167,7 @@ Widget build(BuildContext context) {
                   'pricing': _pricingController.text,
                   'type': _typeController.text,
                   'vehicle_current_location':_vehicle_current_locationController.text,
+                  'vehicle_id':'${time.millisecond}${time.second}',
 
                 });
                 showDialog<String>(

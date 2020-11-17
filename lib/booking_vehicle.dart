@@ -5,8 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Booking extends StatefulWidget {
   @override
+
   _BookingState createState() => _BookingState();
 }
+
 TextEditingController _breakfastController = TextEditingController();
 TextEditingController _destinationController = TextEditingController();
 TextEditingController _driver_experienceController = TextEditingController();
@@ -28,10 +30,21 @@ String selectedmusic;
 String selectedac;
 String selectedwifi;
 
-class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState>();
+DateTime time = DateTime.now();
 
+
+class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState>();
 @override
+  void initState() {
+  time = DateTime.now();
+
+  super.initState();
+  }
+@override
+
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(),
       body:
@@ -252,7 +265,7 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
               child: Text("Register Ticket"),
               onPressed: () {
 
-                  FirebaseFirestore.instance.collection("booking").add({
+                  FirebaseFirestore.instance.collection("booking").doc('${time.millisecond}${_vehicle_numberController.text}').set({
                     'breakFast': _breakfastController.text,
                     'driver_experience': _driver_experienceController.text,
                     'launch': _lunchController.text,
@@ -264,12 +277,13 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
                     'sub_driver': _sub_driverController.text,
                     'vehicle_number': _vehicle_numberController.text,
                     'charger': selectedcharger,
-                    'tv/music/AC': "${selectedtv}/$selectedmusic/$selectedac",
+                    'tv': "${selectedtv}/$selectedmusic/$selectedac",
                     'wifi': selectedwifi,
                     'destination': _destinationController.text,
                     'startlocation': _startlocationController.text,
                     'shift': _shiftController.text,
-                    'type': _typeController.text});
+                    'type': _typeController.text,
+                  "vehicle_id":'${time.millisecond}${time.second}'});
                     showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(

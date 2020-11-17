@@ -15,10 +15,15 @@ TextEditingController _no_of_helperController = TextEditingController();
 TextEditingController _pricingController = TextEditingController();
 TextEditingController _vehicle_usedController = TextEditingController();
 String selectedinsurance;
+DateTime time = DateTime.now();
 
 
 class _MoversState extends State<Movers> {final _formKey = GlobalKey<FormState>();
+void initState() {
+  time = DateTime.now();
 
+  super.initState();
+}
 @override
 Widget build(BuildContext context) {
   return Scaffold(
@@ -121,7 +126,7 @@ Widget build(BuildContext context) {
               child: Text("Register Movers"),
               onPressed: () {
 
-                FirebaseFirestore.instance.collection("Movers").add({
+                FirebaseFirestore.instance.collection("Movers").doc('${time.millisecond}${time.second}').set({
                   'available_in': _available_inController.text,
                   'capacity': _capacityController.text,
                   'current_location': _current_locationController.text,
@@ -131,6 +136,7 @@ Widget build(BuildContext context) {
                   'vehicle_used': _vehicle_usedController.text,
 
                   'insurance': selectedinsurance,
+                  "vehicle_id":'${time.millisecond}${time.second}',
               });
                 showDialog<String>(
                   context: context,

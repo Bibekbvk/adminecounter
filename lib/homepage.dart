@@ -1,5 +1,6 @@
 
 import 'package:adminecounter/booking_vehicle.dart';
+import 'package:adminecounter/display_users.dart';
 import 'package:adminecounter/movers_register.dart';
 import 'package:adminecounter/reserve_register.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,18 +37,7 @@ class _e_counterState extends State<e_counter> {
                   Image.asset('assets/logo.png'),
                 ],
               )),
-          // UserAccountsDrawerHeader(
-          //     otherAccountsPictures: [
-          //       Image.asset('assets/logo.png',
-          //       width:300,
-          //       height:200)
-          //     ],
 
-          //     accountName: Text("E-counter Nepal"),
-          //     accountEmail: Text("ecounternepal@gmail.com"),
-          //     currentAccountPicture: CircleAvatar(
-          //     backgroundImage: NetworkImage('https://picsum.photos/200/300'),
-          //     ),),
           Card(
             elevation: 22,
             shadowColor: Colors.yellowAccent,
@@ -204,7 +194,7 @@ class _e_counterState extends State<e_counter> {
                                         Icon(Icons.contact_phone_outlined,
                                             color: Colors.blue[900], size: 44),
                                         Text(
-                                          'Contact us',
+                                          'Booking Users',
                                           style: TextStyle(
                                               color: Colors.blue[900],
                                               fontWeight: FontWeight.bold),
@@ -212,10 +202,10 @@ class _e_counterState extends State<e_counter> {
                                       ],
                                     ),
                                     onTap: () {
-                                    /*  Navigator.push(
+                                    Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => Contact()));*/
+                                              builder: (context) => ShowUsers(service:"User Booking")));
                                     }),
                               ),
                             ),
@@ -247,7 +237,7 @@ class _e_counterState extends State<e_counter> {
                                         Icon(Icons.app_registration,
                                             color: Colors.blue[900], size: 44),
                                         Text(
-                                          'Register',
+                                          'Reserving Users',
                                           style: TextStyle(
                                               color: Colors.blue[900],
                                               fontWeight: FontWeight.bold),
@@ -256,10 +246,10 @@ class _e_counterState extends State<e_counter> {
                                     ),
                                   ),
                                   onTap: () {
-                                /*    Navigator.push(
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => Register()));*/
+                                            builder: (context) => ShowUsers(service:"User Reserve")));
                                   }),
                             ),
                             SizedBox(
@@ -280,7 +270,7 @@ class _e_counterState extends State<e_counter> {
                                         Icon(Icons.money_off_outlined,
                                             color: Colors.blue[900], size: 44),
                                         Text(
-                                          'Faire',
+                                          'Movers Users',
                                           style: TextStyle(
                                               color: Colors.blue[900],
                                               fontWeight: FontWeight.bold),
@@ -289,10 +279,10 @@ class _e_counterState extends State<e_counter> {
                                     ),
                                   ),
                                   onTap: () {
-                                   /* Navigator.push(
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => Calculate()));*/
+                                            builder: (context) => ShowUsers(service:"User Movers")));
                                   }),
                             ),
                             SizedBox(
