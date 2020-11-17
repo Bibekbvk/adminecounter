@@ -13,6 +13,7 @@ TextEditingController _driver_experienceController = TextEditingController();
 TextEditingController _seat_capacityController = TextEditingController();
 TextEditingController _pricingController = TextEditingController();
 TextEditingController _vehicle_current_locationController = TextEditingController();
+TextEditingController _vehicle_numberController = TextEditingController();
 String selectedcharging;
 String selectedac;
 String selectedwifi;
@@ -151,6 +152,17 @@ Widget build(BuildContext context) {
                   borderRadius: BorderRadius.circular(16),
                 )),
           ),
+          TextFormField(
+            controller: _vehicle_numberController,
+            keyboardType: TextInputType.text,
+            validator: (val) =>
+            val.isEmpty ? "Enter location" : null,
+            decoration: InputDecoration(
+                labelText: "Vehicle Number",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                )),
+          ),
          
 
           RaisedButton(
@@ -168,6 +180,7 @@ Widget build(BuildContext context) {
                   'type': _typeController.text,
                   'vehicle_current_location':_vehicle_current_locationController.text,
                   'vehicle_id':'${time.millisecond}${time.second}',
+                  'vehicle_number':_vehicle_numberController.text,
 
                 });
                 showDialog<String>(

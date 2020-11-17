@@ -134,7 +134,6 @@ Widget build(BuildContext context) {
                   'no_of_helper': _no_of_helperController.text,
                   'pricing': _pricingController.text,
                   'vehicle_used': _vehicle_usedController.text,
-
                   'insurance': selectedinsurance,
                   "vehicle_id":'${time.millisecond}${time.second}',
               });

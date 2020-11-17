@@ -265,7 +265,7 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
               child: Text("Register Ticket"),
               onPressed: () {
 
-                  FirebaseFirestore.instance.collection("booking").doc('${time.millisecond}${_vehicle_numberController.text}').set({
+                  FirebaseFirestore.instance.collection("booking").doc('${time.millisecond}${time.second}').set({
                     'breakFast': _breakfastController.text,
                     'driver_experience': _driver_experienceController.text,
                     'launch': _lunchController.text,
