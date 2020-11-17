@@ -1,9 +1,12 @@
 import 'package:adminecounter/homepage.dart';
+import 'package:adminecounter/main.dart';
+import 'package:adminecounter/searchdistrict.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Booking extends StatefulWidget {
+
   @override
 
   _BookingState createState() => _BookingState();
@@ -97,6 +100,14 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
                 },
                 selectedItem: selectedwifi),
             TextField(
+              onTap: (){
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DistrictSearch(searched: _breakfastController,)),
+                );
+
+              },
               controller: _breakfastController,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
@@ -128,6 +139,14 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
                   )),
             ),
             TextFormField(
+              onTap: (){
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DistrictSearch(searched: _lunchController,)),
+                );
+
+              },
               controller: _lunchController,
               keyboardType: TextInputType.text,
               validator: (val) =>

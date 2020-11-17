@@ -1,10 +1,12 @@
+import 'package:adminecounter/main.dart';
 import 'package:flutter/material.dart';
 
 import 'booking_vehicle.dart';
 
-
 class DistrictSearch extends StatefulWidget {
+final TextEditingController searched;
 
+  const DistrictSearch({Key key, this.searched}) : super(key: key);
 
 
 
@@ -25,15 +27,19 @@ class _DistrictSearchState extends State<DistrictSearch> {
 
 
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          FlatButton(onPressed: (){
+            widget.searched.text= _searchController.text;
+            Navigator.pop(context);
+
+          }, child: Text("Proceed"))
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(children: [
           TextField(
-            onTap: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Booking(selecteddistrict: _searchController.text,)),
-              );
-            },
+
 
             controller: _searchController,
             onChanged: (val){
