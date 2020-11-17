@@ -2,7 +2,7 @@ import 'package:adminecounter/database.dart';
 import 'package:adminecounter/display_booking.dart';
 import 'package:adminecounter/user_model.dart';
 import 'package:flutter/material.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 class ShowUsers extends StatefulWidget {
   final String service;
 
@@ -11,6 +11,8 @@ class ShowUsers extends StatefulWidget {
   _ShowUsersState createState() => _ShowUsersState();
 }
 Database db = Database();
+TextEditingController _ticketController = TextEditingController();
+
 class _ShowUsersState extends State<ShowUsers> {
   @override
   Widget build(BuildContext context) {
@@ -28,19 +30,29 @@ class _ShowUsersState extends State<ShowUsers> {
             UserModel moversmodel = UserModel(contact: contact,name: name,ticket_for: ticket_for,vehicle_id: vehicle_id);
 
             return Column(
+
               children: [
                 Text("$name"),
                 Text("$contact"),
-                Text("$ticket_for"),
+                Text('${snapshot.data[index].vehicle_number}'),
                 Text("$vehicle_id"),
+                TextField(
+                  controller: _ticketController,
+
+                ),
                 RaisedButton(onPressed: (){
-                  Navigator.push(
+                 /* Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ShowVehicles(vehicle_id:vehicle_id)));
+                          builder: (context) => ShowVehicles(vehicle_id:vehicle_id)));*/
+                  FirebaseFirestore.instance.collection('${widget.service}').doc('${snapshot.data[index].transaction_id}').update({
+                    'link':"${_ticketController.text}",
+                    'status':'successfull',
+                  });
 
 
-                })
+                },child: Text("Update ticket"),)
+
               ],
 
             );
