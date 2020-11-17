@@ -3,6 +3,7 @@ import 'package:adminecounter/booking_vehicle.dart';
 import 'package:adminecounter/display_users.dart';
 import 'package:adminecounter/movers_register.dart';
 import 'package:adminecounter/reserve_register.dart';
+import 'package:adminecounter/searchdistrict.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -253,8 +254,7 @@ class _e_counterState extends State<e_counter> {
                                   }),
                             ),
                             SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.02,
-                            ),
+                              width: MediaQuery.of(context).size.width * 0.02,),
                             Expanded(
                               child: InkWell(
                                   child: Container(
@@ -288,6 +288,41 @@ class _e_counterState extends State<e_counter> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.02,
                             ),
+                            Expanded(
+                              child: InkWell(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      border:
+                                      Border.all(color: Colors.lightBlue),
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      children: [
+                                        Icon(Icons.location_city,
+                                            color: Colors.blue[900], size: 44),
+                                        Text(
+                                          'Search District',
+                                          style: TextStyle(
+                                              color: Colors.blue[900],
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => DistrictSearch()));
+                                  }),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.02,
+                            ),
+
+
                             Expanded(
                               child: InkWell(
                                   child: Container(
