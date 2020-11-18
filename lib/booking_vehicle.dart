@@ -4,6 +4,7 @@ import 'package:adminecounter/searchdistrict.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class Booking extends StatefulWidget {
 
@@ -27,6 +28,11 @@ TextEditingController _sub_driverController = TextEditingController();
 TextEditingController _timeController = TextEditingController();
 TextEditingController _typeController = TextEditingController();
 TextEditingController _vehicle_numberController = TextEditingController();
+TextEditingController _departure_dateController = TextEditingController();
+TextEditingController _vehicle_nameController = TextEditingController();
+TextEditingController _imgurlController = TextEditingController();
+
+
 String selectedcharger;
 String selectedtv;
 String selectedmusic;
@@ -54,6 +60,17 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
       SingleChildScrollView(
         child: Column(
           children: [
+            TextFormField(
+              controller: _vehicle_nameController,
+              keyboardType: TextInputType.text,
+              validator: (val) =>
+              val.isEmpty ? "Please enter Number" : null,
+              decoration: InputDecoration(
+                  labelText: "Vehicle Name",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  )),
+            ),
             DropdownSearch<String>(
                 mode: Mode.MENU,
                 label: "Charger",
@@ -279,6 +296,38 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
                     borderRadius: BorderRadius.circular(16),
                   )),
             ),
+            TextFormField(
+              controller: _imgurlController,
+              keyboardType: TextInputType.text,
+              validator: (val) =>
+              val.isEmpty ? "Enter Vehicle Number" : null,
+              decoration: InputDecoration(
+                  labelText: "Image Url",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  )),
+            ),
+            TextFormField(
+              onTap: (){
+
+                DatePicker.showDatePicker(context,
+                    showTitleActions: true,
+                    onChanged: (date) {}, onConfirm: (date) {
+
+                        String dates =  "${date.year}/${date.month}/${date.day}";
+                        _departure_dateController.text=dates;
+                      });
+                    },
+              controller: _departure_dateController,
+              keyboardType: TextInputType.text,
+              validator: (val) =>
+              val.isEmpty ? "Enter Vehicle Number" : null,
+              decoration: InputDecoration(
+                  labelText: "Departure Date",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  )),
+            ),
             RaisedButton(
               color: Colors.blue.shade700,
               child: Text("Register Ticket"),
@@ -302,7 +351,11 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
                     'startlocation': _startlocationController.text,
                     'shift': _shiftController.text,
                     'type': _typeController.text,
-                  "vehicle_id":'${time.millisecond}${time.second}'});
+                    'departure_date':_departure_dateController.text,
+                  "vehicle_id":'${time.millisecond}${time.second}',
+                  'vehicle_name':_vehicle_nameController.text,
+                    'img_url':_imgurlController.text},
+                  );
                     showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
@@ -315,21 +368,24 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
                              Navigator.pop(context);
 
 
-                       _breakfastController.clear();
-                    _destinationController.clear();
-                    _driver_experienceController.clear();
-                    _lunchController.clear();
-                 _offerController.clear();
-                    _pickup_locationController.clear();
-                    _priceController.clear();
-                     _routeController.clear();
-                     _seatController.clear();
-                    _shiftController.clear();
-                    _startlocationController.clear();
-                    _sub_driverController.clear();
-                   _timeController.clear();
-                 _typeController.clear();
-                   _vehicle_numberController.clear(); },
+                                 _breakfastController.clear();
+                              _destinationController.clear();
+                              _driver_experienceController.clear();
+                              _lunchController.clear();
+                           _offerController.clear();
+                              _pickup_locationController.clear();
+                              _priceController.clear();
+                               _routeController.clear();
+                               _seatController.clear();
+                              _shiftController.clear();
+                              _startlocationController.clear();
+                              _sub_driverController.clear();
+                             _timeController.clear();
+                           _typeController.clear();
+                             _vehicle_numberController.clear();
+                             _departure_dateController.clear();
+                             _vehicle_nameController.clear();
+                             _imgurlController.clear();},
                               child: Text("OK")),
                         ],
                       ),
