@@ -9,7 +9,7 @@ class UserModel{
   final String vehicle_number;
   final String link;
   final String status;
-  final String seat_number;
+  final List seat_number;
 
   UserModel({this.contact,this.name,this.ticket_for,this.vehicle_id,this.transaction_id,this.vehicle_number,this.link,this.status,this.seat_number});
 

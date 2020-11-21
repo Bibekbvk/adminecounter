@@ -27,7 +27,7 @@ class _ShowUsersState extends State<ShowUsers> {
              String name=snapshot.data[index].name;
              String ticket_for=snapshot.data[index].ticket_for;
              String vehicle_id=snapshot.data[index].vehicle_id;
-             String seat_number=snapshot.data[index].seat_number;
+             List seat_number=snapshot.data[index].seat_number;
 
 
             UserModel moversmodel = UserModel(contact: contact,name: name,ticket_for: ticket_for,vehicle_id: vehicle_id,seat_number: seat_number);
@@ -40,7 +40,7 @@ class _ShowUsersState extends State<ShowUsers> {
                 Text('Vehicle Number : ${snapshot.data[index].vehicle_number}'),
                 Text("Departure Date : ${snapshot.data[index].ticket_for}"),
 
-               Text("Seat Number : ${snapshot.data[index].seat_number}"),
+               Text("Seat Number : ${snapshot.data[index].seat_number.toString()}"),
 
 
 
