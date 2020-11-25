@@ -355,6 +355,7 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
                   "vehicle_id":'${time.millisecond}${time.second}',
                   'vehicle_name':_vehicle_nameController.text,
                     'img_url':_imgurlController.text},
+
                   );
                     showDialog<String>(
                       context: context,

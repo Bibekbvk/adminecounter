@@ -14,6 +14,7 @@ TextEditingController _seat_capacityController = TextEditingController();
 TextEditingController _pricingController = TextEditingController();
 TextEditingController _vehicle_current_locationController = TextEditingController();
 TextEditingController _vehicle_numberController = TextEditingController();
+TextEditingController _imgController = TextEditingController();
 String selectedcharging;
 String selectedac;
 String selectedwifi;
@@ -163,6 +164,16 @@ Widget build(BuildContext context) {
                   borderRadius: BorderRadius.circular(16),
                 )),
           ),
+          TextFormField(
+            controller: _imgController,
+            keyboardType: TextInputType.text,
+
+            decoration: InputDecoration(
+                labelText: "ImageLink",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                )),
+          ),
          
 
           RaisedButton(
@@ -181,6 +192,7 @@ Widget build(BuildContext context) {
                   'vehicle_current_location':_vehicle_current_locationController.text,
                   'vehicle_id':'${time.millisecond}${time.second}',
                   'vehicle_number':_vehicle_numberController.text,
+                  'img_url':_imgController.text
 
                 });
                 showDialog<String>(
