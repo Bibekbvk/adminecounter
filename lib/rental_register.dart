@@ -11,7 +11,7 @@ TextEditingController _available_inController = TextEditingController();
 TextEditingController _capacityController = TextEditingController();
 TextEditingController _current_locationController = TextEditingController();
 TextEditingController _descriptionController = TextEditingController();
-TextEditingController _no_of_helperController = TextEditingController();
+TextEditingController rentedbyController = TextEditingController();
 TextEditingController _pricingController = TextEditingController();
 TextEditingController _vehicle_usedController = TextEditingController();
 String selectedinsurance;
@@ -89,12 +89,12 @@ Widget build(BuildContext context) {
                 )),
           ),
           TextFormField(
-            controller: _no_of_helperController,
+            controller: rentedbyController,
             keyboardType: TextInputType.text,
             validator: (val) =>
             val.isEmpty ? "Please enter Number" : null,
             decoration: InputDecoration(
-                labelText: "Number of Helpers",
+                labelText: "Rented By",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                 )),
@@ -133,7 +133,7 @@ Widget build(BuildContext context) {
                   'capacity': _capacityController.text,
                   'current_location': _current_locationController.text,
                   'description': _descriptionController.text,
-                  'no_of_helper': _no_of_helperController.text,
+                  'rentedby': rentedbyController.text,
                   'pricing': _pricingController.text,
                   'vehicle_used': _vehicle_usedController.text,
                   'insurance': selectedinsurance,
@@ -157,7 +157,7 @@ Widget build(BuildContext context) {
                             _capacityController.clear();
                             _current_locationController.clear();
                             _descriptionController.clear();
-                            _no_of_helperController.clear();
+                            rentedbyController.clear();
                             _pricingController.clear();
                             _vehicle_usedController.clear();
                           },
