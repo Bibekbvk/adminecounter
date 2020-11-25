@@ -3,28 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Reserve extends StatefulWidget {
+class Rental extends StatefulWidget {
   @override
-  _ReserveState createState() => _ReserveState();
+  _RentalState createState() => _RentalState();
 }
 TextEditingController _available_inController = TextEditingController();
-TextEditingController _driverController = TextEditingController();
-TextEditingController _driver_experienceController = TextEditingController();
-TextEditingController _seat_capacityController = TextEditingController();
+TextEditingController _capacityController = TextEditingController();
+TextEditingController _current_locationController = TextEditingController();
+TextEditingController _descriptionController = TextEditingController();
+TextEditingController _no_of_helperController = TextEditingController();
 TextEditingController _pricingController = TextEditingController();
-TextEditingController _vehicle_current_locationController = TextEditingController();
-TextEditingController _vehicle_numberController = TextEditingController();
-String selectedcharging;
-String selectedac;
-String selectedwifi;
-String selectedtv;
-List pricelist = ["Damak to Urlabari : 1000", "Dhanusa to Sankhuwasabha : 5000"];
-TextEditingController _typeController = TextEditingController();
+TextEditingController _vehicle_usedController = TextEditingController();
+String selectedinsurance;
 DateTime time = DateTime.now();
 
 
-
-class _ReserveState extends State<Reserve> {final _formKey = GlobalKey<FormState>();
+class _RentalState extends State<Rental> {final _formKey = GlobalKey<FormState>();
 void initState() {
   time = DateTime.now();
 
@@ -32,6 +26,8 @@ void initState() {
 }
 @override
 Widget build(BuildContext context) {
+  List pricelist = ["Damak to Urlabari : 1000", "Dhanusa to Sankhuwasabha : 5000"];
+
   return Scaffold(
     appBar: AppBar(),
     body:
@@ -40,40 +36,13 @@ Widget build(BuildContext context) {
         children: [
           DropdownSearch<String>(
               mode: Mode.MENU,
-              label: "Charging",
+              label: "Insurance",
               showSelectedItem: true,
               items:["✅","❌"],
               onChanged: (val){
-                selectedcharging = val;
+                selectedinsurance = val;
               },
-              selectedItem: selectedcharging),
-          DropdownSearch<String>(
-              mode: Mode.MENU,
-              label: "AC",
-              showSelectedItem: true,
-              items:["✅","❌"],
-              onChanged: (val){
-                selectedac = val;
-              },
-              selectedItem: selectedac),
-          DropdownSearch<String>(
-              mode: Mode.MENU,
-              label: "Wifi",
-              showSelectedItem: true,
-              items:["✅","❌"],
-              onChanged: (val){
-                selectedwifi = val;
-              },
-              selectedItem: selectedwifi),
-          DropdownSearch<String>(
-              mode: Mode.MENU,
-              label: "TV",
-              showSelectedItem: true,
-              items:["✅","❌"],
-              onChanged: (val){
-                selectedtv = val;
-              },
-              selectedItem: selectedtv),
+              selectedItem: selectedinsurance),
 
 
 
@@ -81,46 +50,24 @@ Widget build(BuildContext context) {
             controller: _available_inController,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
-                labelText: "Availability",
+                labelText: "Availibility",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                 )),
           ),
           TextFormField(
-            controller: _driverController,
+            controller: _capacityController,
             keyboardType: TextInputType.text,
             validator: (val) =>
             val.isEmpty ? "Enter Destination" : null,
             decoration: InputDecoration(
-                labelText: "Driver",
+                labelText: "Capacity",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                 )),
           ),
           TextFormField(
-            controller: _driver_experienceController,
-            keyboardType: TextInputType.text,
-            validator: (val) =>
-            val.isEmpty ? "Please enter Number" : null,
-            decoration: InputDecoration(
-                labelText: "Driver Experience",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                )),
-          ),
-          TextFormField(
-            controller: _seat_capacityController,
-            keyboardType: TextInputType.text,
-            validator: (val) =>
-            val.isEmpty ? "Please enter Number" : null,
-            decoration: InputDecoration(
-                labelText: "Seat Capacity",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                )),
-          ),
-          TextFormField(
-            controller: _vehicle_current_locationController,
+            controller: _current_locationController,
             keyboardType: TextInputType.text,
             validator: (val) =>
             val.isEmpty ? "Please enter Number" : null,
@@ -131,12 +78,23 @@ Widget build(BuildContext context) {
                 )),
           ),
           TextFormField(
-            controller: _typeController,
+            controller: _descriptionController,
             keyboardType: TextInputType.text,
             validator: (val) =>
             val.isEmpty ? "Please enter Number" : null,
             decoration: InputDecoration(
-                labelText: "Type",
+                labelText: "Description",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                )),
+          ),
+          TextFormField(
+            controller: _no_of_helperController,
+            keyboardType: TextInputType.text,
+            validator: (val) =>
+            val.isEmpty ? "Please enter Number" : null,
+            decoration: InputDecoration(
+                labelText: "Number of Helpers",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                 )),
@@ -153,43 +111,42 @@ Widget build(BuildContext context) {
                 )),
           ),
           TextFormField(
-            controller: _vehicle_numberController,
+            controller: _vehicle_usedController,
             keyboardType: TextInputType.text,
             validator: (val) =>
-            val.isEmpty ? "Enter location" : null,
+            val.isEmpty ? "Enter Price" : null,
             decoration: InputDecoration(
-                labelText: "Vehicle Number",
+                labelText: "Vehicle Used",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                 )),
+
           ),
-         
 
           RaisedButton(
               color: Colors.blue.shade700,
-              child: Text("Reserve Reserve"),
+              child: Text("Register Rental"),
               onPressed: () {
 
-                FirebaseFirestore.instance.collection("Reserve").doc('${time.millisecond}${time.second}').set({
+                FirebaseFirestore.instance.collection("Rental").doc('${time.millisecond}${time.second}').set({
                   'available_in': _available_inController.text,
-                  'charging/ac/wifi/tv': "${selectedcharging}/${selectedac}/$selectedwifi/$selectedtv",
-                  'driver': _driverController.text,
-                  'driver_experience': _driver_experienceController.text,
-                  'seat_capacity': _seat_capacityController.text,
+                  'capacity': _capacityController.text,
+                  'current_location': _current_locationController.text,
+                  'description': _descriptionController.text,
+                  'no_of_helper': _no_of_helperController.text,
                   'pricing': _pricingController.text,
-                  'type': _typeController.text,
-                  'vehicle_current_location':_vehicle_current_locationController.text,
-                  'vehicle_id':'${time.millisecond}${time.second}',
-                  'vehicle_number':_vehicle_numberController.text,
+                  'vehicle_used': _vehicle_usedController.text,
+                  'insurance': selectedinsurance,
+                  "vehicle_id":'${time.millisecond}${time.second}',
                   'price_list':pricelist,
 
                 });
                 showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                    title: Text("Reserve"),
+                    title: Text("Register"),
                     content: Text(
-                        " Success! Vehicle Reserveed"),
+                        " Success! Vehicle Registered"),
                     actions: <Widget>[
                       FlatButton(
                           onPressed: () {
@@ -197,12 +154,12 @@ Widget build(BuildContext context) {
 
 
                             _available_inController.clear();
-                            _driver_experienceController.clear();
-                            _driverController.clear();
-                            _seat_capacityController.clear();
-                            _typeController.clear();
+                            _capacityController.clear();
+                            _current_locationController.clear();
+                            _descriptionController.clear();
+                            _no_of_helperController.clear();
                             _pricingController.clear();
-                            _vehicle_current_locationController.clear();
+                            _vehicle_usedController.clear();
                           },
                           child: Text("OK")),
                     ],

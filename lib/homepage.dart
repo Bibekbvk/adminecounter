@@ -2,6 +2,7 @@
 import 'package:adminecounter/booking_vehicle.dart';
 import 'package:adminecounter/display_users.dart';
 import 'package:adminecounter/movers_register.dart';
+import 'package:adminecounter/rental_register.dart';
 import 'package:adminecounter/reserve_register.dart';
 import 'package:adminecounter/searchdistrict.dart';
 import 'package:flutter/cupertino.dart';
@@ -288,36 +289,7 @@ class _e_counterState extends State<e_counter> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.02,
                             ),
-                            Expanded(
-                              child: InkWell(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border:
-                                      Border.all(color: Colors.lightBlue),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.location_city,
-                                            color: Colors.blue[900], size: 44),
-                                        Text(
-                                          'Search District',
-                                          style: TextStyle(
-                                              color: Colors.blue[900],
-                                              fontWeight: FontWeight.bold),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => DistrictSearch()));
-                                  }),
-                            ),
+
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.02,
                             ),
@@ -335,10 +307,10 @@ class _e_counterState extends State<e_counter> {
                                       mainAxisAlignment:
                                       MainAxisAlignment.center,
                                       children: [
-                                        Icon(Icons.celebration,
+                                        Icon(Icons.money_off_outlined,
                                             color: Colors.blue[900], size: 44),
                                         Text(
-                                          'Offer',
+                                          'Rental Users',
                                           style: TextStyle(
                                               color: Colors.blue[900],
                                               fontWeight: FontWeight.bold),
@@ -347,10 +319,10 @@ class _e_counterState extends State<e_counter> {
                                     ),
                                   ),
                                   onTap: () {
-                                    /*Navigator.push(
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => offers()));*/
+                                            builder: (context) => ShowUsers(service:"User Rental")));
                                   }),
                             ),
                           ],
@@ -414,7 +386,7 @@ class _e_counterState extends State<e_counter> {
                                             color: Colors.blue[900], size: 44),
                                         SizedBox(height: 20),
                                         Text(
-                                          'About Us',
+                                          'Rent Register',
                                           style: TextStyle(
                                               color: Colors.blue[900],
                                               fontWeight: FontWeight.bold),
@@ -423,10 +395,10 @@ class _e_counterState extends State<e_counter> {
                                     ),
                                   ),
                                   onTap: () {
-                                    /*Navigator.push(
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => Aboutpage()));*/
+                                            builder: (context) => Rental()));
                                   }),
                             ),
                             SizedBox(
