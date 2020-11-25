@@ -5,7 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Database{
   Stream<List<UserModel>> getuserdetailsfirebase(String service) {
-    var ref = FirebaseFirestore.instance.collection('$service').where("status",isEqualTo: 'pending');
+    print("$service");
+    var ref = FirebaseFirestore.instance.collection('$service').where("status",isEqualTo:"pending");
+
     return ref.snapshots().map((val) => val.docs.map((docs) => UserModel.fromFireStore(docs)).toList());
   }
 

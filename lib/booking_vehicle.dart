@@ -44,6 +44,7 @@ DateTime time = DateTime.now();
 
 class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState>();
 @override
+
   void initState() {
   time = DateTime.now();
 
@@ -52,7 +53,7 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
 @override
 
   Widget build(BuildContext context) {
-
+List seatnum=["x"];
 
     return Scaffold(
       appBar: AppBar(),
@@ -354,8 +355,9 @@ class _BookingState extends State<Booking> {final _formKey = GlobalKey<FormState
                     'departure_date':_departure_dateController.text,
                   "vehicle_id":'${time.millisecond}${time.second}',
                   'vehicle_name':_vehicle_nameController.text,
-                    'img_url':_imgurlController.text},
-
+                    'img_url':_imgurlController.text,
+                    'seat_number':seatnum,
+                  },
                   );
                     showDialog<String>(
                       context: context,

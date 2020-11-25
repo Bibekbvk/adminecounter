@@ -9,7 +9,9 @@ class UserModel{
   final String vehicle_number;
   final String link;
   final String status;
-  UserModel({this.contact,this.name,this.ticket_for,this.vehicle_id,this.transaction_id,this.vehicle_number,this.link,this.status});
+  final List seat_number;
+
+  UserModel({this.contact,this.name,this.ticket_for,this.vehicle_id,this.transaction_id,this.vehicle_number,this.link,this.status,this.seat_number});
 
   factory UserModel.fromFireStore(DocumentSnapshot doc) {
     Map data = doc.data();
@@ -23,6 +25,9 @@ class UserModel{
       vehicle_number: data['vehicle_number'],
       link: data['link'],
       status:data['status'],
+      seat_number:data['seat_number'],
+
+
 
     );
 

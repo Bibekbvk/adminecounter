@@ -26,6 +26,8 @@ void initState() {
 }
 @override
 Widget build(BuildContext context) {
+  List pricelist = ["Damak to Urlabari : 1000", "Dhanusa to Sankhuwasabha : 5000"];
+
   return Scaffold(
     appBar: AppBar(),
     body:
@@ -136,7 +138,9 @@ Widget build(BuildContext context) {
                   'vehicle_used': _vehicle_usedController.text,
                   'insurance': selectedinsurance,
                   "vehicle_id":'${time.millisecond}${time.second}',
-              });
+                  'price_list':pricelist,
+
+                });
                 showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
