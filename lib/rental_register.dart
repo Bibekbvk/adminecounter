@@ -14,6 +14,8 @@ TextEditingController _descriptionController = TextEditingController();
 TextEditingController rentedbyController = TextEditingController();
 TextEditingController _pricingController = TextEditingController();
 TextEditingController _vehicle_usedController = TextEditingController();
+TextEditingController _vehicleNameController = TextEditingController();
+
 String selectedinsurance;
 DateTime time = DateTime.now();
 
@@ -122,6 +124,18 @@ Widget build(BuildContext context) {
                 )),
 
           ),
+          TextFormField(
+            controller: _vehicleNameController,
+            keyboardType: TextInputType.text,
+            validator: (val) =>
+            val.isEmpty ? "Enter Price" : null,
+            decoration: InputDecoration(
+                labelText: "Vehicle Name",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                )),
+
+          ),
 
           RaisedButton(
               color: Colors.blue.shade700,
@@ -139,6 +153,7 @@ Widget build(BuildContext context) {
                   'insurance': selectedinsurance,
                   "vehicle_id":'${time.millisecond}${time.second}',
                   'price_list':pricelist,
+                  'vehiclename':_vehicleNameController.text,
 
                 });
                 showDialog<String>(
